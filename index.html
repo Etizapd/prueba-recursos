@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .column {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .term {
+      padding: 10px;
+      margin: 5px;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .definition {
+      padding: 10px;
+      margin: 5px;
+      background-color: #e0f7fa;
+      border: 1px solid #81d4fa;
+      border-radius: 5px;
+    }
+
+    .input-box {
+      width: 50px;
+      padding: 5px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #submitBtn {
+      margin-top: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="column1" class="column">
+    <div class="term" data-number="1">Término 1</div>
+    <div class="term" data-number="2">Término 2</div>
+    <div class="term" data-number="3">Término 3</div>
+    <div class="term" data-number="4">Término 4</div>
+    <div class="term" data-number="5">Término 5</div>
+  </div>
+
+  <div id="column2" class="column">
+    <input type="text" class="input-box" id="input1" placeholder="Número">
+    <input type="text" class="input-box" id="input2" placeholder="Número">
+    <input type="text" class="input-box" id="input3" placeholder="Número">
+    <input type="text" class="input-box" id="input4" placeholder="Número">
+    <input type="text" class="input-box" id="input5" placeholder="Número">
+  </div>
+
+  <div id="column3" class="column">
+    <div class="definition" data-number="1">Definición 1</div>
+    <div class="definition" data-number="2">Definición 2</div>
+    <div class="definition" data-number="3">Definición 3</div>
+    <div class="definition" data-number="4">Definición 4</div>
+    <div class="definition" data-number="5">Definición 5</div>
+  </div>
+</div>
+
+<div id="feedback"></div>
+<button id="submitBtn" onclick="checkAnswers()">Enviar Respuestas</button>
+
+<script>
+  function checkAnswers() {
+    var correct = true;
+
+    for (var i = 1; i <= 5; i++) {
+      var input = document.getElementById('input' + i);
+      var definition = document.querySelector('.definition[data-number="' + i + '"]');
+
+      if (input.value !== definition.dataset.number) {
+        correct = false;
+      }
+    }
+
+    var feedback = document.getElementById('feedback');
+    feedback.textContent = correct ? '¡Respuestas Correctas!' : '¡Alguna respuesta es incorrecta!';
+  }
+</script>
+
+</body>
+</html>
